@@ -3,16 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "0.0.27",
     "jest-expo": "^0.3.0",
     "react-test-renderer": "~15.4.1"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
@@ -20,10 +17,10 @@
   },
   "dependencies": {
     "events": "^1.1.1",
-    "expo": "^15.1.0",
     "react": "~15.4.0",
     "react-native": "0.42.3",
+    "react-native-fs": "^2.1.0-rc.1",
     "react-native-icons": "^0.7.1",
-    "react-native-svg-uri": "^1.2.0",
+    "react-native-svg-uri": "^1.2.0"
   }
 }
