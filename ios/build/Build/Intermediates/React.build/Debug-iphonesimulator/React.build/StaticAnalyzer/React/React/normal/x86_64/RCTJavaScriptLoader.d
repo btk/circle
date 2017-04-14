@@ -1,0 +1,26 @@
+dependencies: \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTMultipartDataTask.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTMultipartStreamReader.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/burak/Development/circle/node_modules/react-native/React/Base/RCTUtils.h

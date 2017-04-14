@@ -1,0 +1,35 @@
+dependencies: \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/IconTabBarItem/SMXTabBarItemManager.m \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/IconTabBarItem/SMXTabBarItemManager.h \
+  ../../react-native/React/Views/RCTViewManager.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/burak/Development/circle/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/IconTabBarItem/SMXTabBarItem.h \
+  ../../react-native/React/Base/RCTConvert.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/FAKIconImage/FAKIconImage.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FontAwesomeKit.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKIcon.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKFontAwesome.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKFoundationIcons.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKZocial.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKIonIcons.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKMaterial.h \
+  /Users/burak/Development/circle/node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FAKOcticons.h
