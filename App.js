@@ -3,8 +3,10 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import Header from './component/header';
 import Navbar from './component/navbar';
 import Content from './component/content';
+import Reader from './component/reader';
 import RawApi from './api';
 import * as StoredApi from './storedapi';
+import * as EventManager from './js/event.js';
 
 import SvgUri from 'react-native-svg-uri';
 
@@ -12,11 +14,32 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.defaultTab = 'store';
-    this.state = { currentTab: this.defaultTab };
+    this.state = {
+      currentTab: this.defaultTab,
+      readerStatus: false,
+      currentBookId: 0
+    };
     // Create and store the Api
     let api = new RawApi();
     StoredApi.storeApi(api);
+    EventManager.storeEvent();
     this.api = StoredApi.getApi();
+    this.event = EventManager.getEvent();
+  }
+
+  componentDidMount(){
+    this.event.on('reader', (data) => {
+      if (data.bookId) {
+        this.setState({
+          readerStatus: true,
+          currentBookId: data.bookId
+        });
+      }
+    });
+  }
+
+  closeReader = () => {
+    this.setState({readerStatus: false});
   }
 
   tabChanged = (tab) => {
@@ -25,15 +48,25 @@ export default class App extends React.Component {
         currentTab: tab
       });
   }
+
   render() {
-    return (
-      <View style={styles.container}>
-      <StatusBar barStyle="dark-content"/>
-        <Header currentTab = {this.state.currentTab} />
-        <Content key={this.state.currentTab} currentTab={this.state.currentTab}/>
-        <Navbar changeTab={this.tabChanged} currentTab={this.state.currentTab}/>
-      </View>
-    );
+    if(this.state.readerStatus){
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="dark-content"/>
+          <Reader close={this.closeReader.bind(this)} bookId={this.state.currentBookId}/>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+        <StatusBar barStyle="dark-content"/>
+          <Header currentTab = {this.state.currentTab} />
+          <Content key={this.state.currentTab} currentTab={this.state.currentTab}/>
+          <Navbar changeTab={this.tabChanged} currentTab={this.state.currentTab}/>
+        </View>
+      );
+    }
   }
 }
 

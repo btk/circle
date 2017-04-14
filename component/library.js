@@ -16,7 +16,7 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.api = StoredApi.getApi();
-    this.state = { books: []};
+    this.state = { books: [] };
   }
 
   /*
@@ -29,6 +29,7 @@ export default class App extends React.Component {
       });
     });
   }
+
   render() {
     return (
       <ScrollView
