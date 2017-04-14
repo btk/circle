@@ -4,6 +4,7 @@ import { StyleSheet, TouchableOpacity, Text, View, Dimensions } from 'react-nati
 import Header from './header';
 import SvgUri from 'react-native-svg-uri';
 import * as EventManager from './../js/event.js';
+import * as StoredApi from './../storedapi.js';
 
 function getSize() {
   return {
@@ -15,21 +16,30 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {bookLoad: false};
     this.event = EventManager.getEvent();
-
+    this.api = StoredApi.getApi();
+    this.getBook();
   }
 
-  closeReader = () => {
-    this.setState({readerStatus: false});
+  getBook = () => {
+    this.api.getBookById(this.props.bookId).then((resp) => {
+      this.book = resp;
+      this.setState({bookLoad: true});
+    });
   }
 
   render() {
-    return( <View style={styles.readerCarrier}>
-              <Header />
-              <Text>Reader: {this.props.bookId}</Text>
-              <TouchableOpacity onPress={this.props.close}><Text>Close</Text></TouchableOpacity>
-            </View>);
+    if(this.state.bookLoad){
+      return( <View style={styles.readerCarrier}>
+                <Header currentTab={"Chapter 1"}/>
+                <Text>Reader: {this.props.bookId}</Text>
+                <TouchableOpacity onPress={this.props.close}><Text>Close</Text></TouchableOpacity>
+              </View>);
+    }else{
+      return(null);
+    }
+
   }
 }
 

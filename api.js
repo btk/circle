@@ -13,6 +13,7 @@ const b12 = { id: 12, title: "The Truth of the Screw", author: "Hanry James", pa
 const b13 = { id: 13, title: "The Legend of Sleepy Hallow", author: "Washington Irving", page: 382, cover: require('./books/13/cover.jpg')  };
 const b14 = { id: 14, title: "The Art of War", author: "Sun Tzu", page: 52, cover: require('./books/14/cover.jpg') };
 
+
 export default class Api {
   constructor(){
     console.log("API object created!");
@@ -27,6 +28,12 @@ export default class Api {
   getMyBooks(){
     return new Promise((resolve) => {
       resolve([b1, b7, b9, b12, b14]);
+    }, 150);
+  }
+
+  getBookById(id){
+    return new Promise((resolve) => {
+        resolve(b1);
     }, 150);
   }
 }
