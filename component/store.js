@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions } from 'react-native';
-import Api from './../api';
+import * as StoredApi from './../storedapi';
 
 import BookView from './views/bookview';
 
@@ -14,7 +14,7 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.api = new Api();
+    this.api = StoredApi.getApi();
     this.state = { books: [], closeAll: true };
   }
 

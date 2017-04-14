@@ -3,6 +3,8 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import Header from './component/header';
 import Navbar from './component/navbar';
 import Content from './component/content';
+import RawApi from './api';
+import * as StoredApi from './storedapi';
 
 import SvgUri from 'react-native-svg-uri';
 
@@ -11,6 +13,10 @@ export default class App extends React.Component {
     super(props);
     this.defaultTab = 'store';
     this.state = { currentTab: this.defaultTab };
+    // Create and store the Api
+    let api = new RawApi();
+    StoredApi.storeApi(api);
+    this.api = StoredApi.getApi();
   }
 
   tabChanged = (tab) => {
