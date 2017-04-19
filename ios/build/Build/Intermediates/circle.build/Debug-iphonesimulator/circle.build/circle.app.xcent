@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>Apple Software.org.reactjs.native.example.circle</string>
+	<string>7ZD9G5H3ZM.org.reactjs.native.example.circle</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>Apple Software.org.reactjs.native.example.circle</string>
+		<string>7ZD9G5H3ZM.org.reactjs.native.example.circle</string>
 	</array>
 </dict>
 </plist>

@@ -7,6 +7,7 @@ import Reader from './component/reader';
 import RawApi from './api';
 import * as StoredApi from './storedapi';
 import * as EventManager from './js/event.js';
+import File from './js/file.js';
 
 import SvgUri from 'react-native-svg-uri';
 
@@ -25,6 +26,8 @@ export default class App extends React.Component {
     EventManager.storeEvent();
     this.api = StoredApi.getApi();
     this.event = EventManager.getEvent();
+
+    let f = new File();
   }
 
   componentDidMount(){

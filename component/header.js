@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Animated, Easing } from 'react-native';
 
 import SvgUri from 'react-native-svg-uri';
 
@@ -69,9 +69,27 @@ export default class App extends React.Component {
     return (
       <View>
         <View style={styles.header}>
+        {this.props.leftButton &&
+        <TouchableOpacity style={styles.touchableButton} onPress={this.props.leftButton}>
+          <View style={styles.button}>
+          <SvgUri
+            width="20"
+            height="20"
+            source={require('./../svg/back.svg')}/>
+          </View>
+        </TouchableOpacity>}
           <Animated.Text style={[styles.currentTabText, { opacity: this.state.textAnim }]}>
             {this.currentTabMap(this.state.tab)}
           </Animated.Text>
+          {this.props.rightButton &&
+          <TouchableOpacity style={styles.touchableButton} onPress={this.props.rightButton}>
+            <View style={styles.button}>
+            <SvgUri
+              width="20"
+              height="20"
+              source={require('./../svg/settings.svg')}/>
+            </View>
+          </TouchableOpacity>}
         </View>
       </View>
     );
@@ -80,15 +98,28 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    height:60,
-    paddingTop:20,
-    alignItems: 'center',
+    height: 60,
+    paddingTop: 20,
+    flexDirection: 'row',
+    alignItems: 'stretch',
     backgroundColor: '#ffffff',
     borderBottomWidth: 1,
     borderBottomColor: '#f3f4f5',
     backgroundColor: '#fff',
   },
   currentTabText: {
-    lineHeight: 38
+    flex: 1,
+    lineHeight: 38,
+    textAlign: 'center'
+  },
+  touchableButton: {
+      height: 40,
+      width: 40,
+  },
+  button:{
+    height: 20,
+    width: 20,
+    padding: 10,
+    opacity: 0.6
   }
 });
