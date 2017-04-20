@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Dimensions, Image, Animated, Easing } from 'react-native';
 
+import * as FileManager from './../../js/file';
 
 function getSize() {
     return {
@@ -14,10 +15,12 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       tab: this.props.currentTab,
-      bookAnim: new Animated.Value(0)
+      bookAnim: new Animated.Value(0),
+      bookCover: ""
     };
     this.animateBook(0);
 
+    this.file = FileManager.getFile();
   }
 
   /*
@@ -31,12 +34,17 @@ export default class App extends React.Component {
     this.animateBook(0);
   }
 
+  componentDidMount(){
+    this.file.getBookCover(this.props.book.uniqid).then(coverImage => {
+      this.setState({bookCover: coverImage});
+    });
+  }
+
   bookPressed = (toVal) => {
     console.log("book pressed", this.props.book.id);
     this.props.openViewNotifier();
     setTimeout(() => this.animateBook(toVal), 10);
   }
-
 
   animateBook(toVal){
     Animated.timing(
@@ -86,7 +94,9 @@ export default class App extends React.Component {
     return (
       <View style={styles.bookView}>
         <TouchableOpacity onPress={() => this.bookPressed(1)}>
-          <Animated.Image source={this.props.book.cover} style={[styles.bookViewImage, bookImageAnim]}/>
+          {(this.state.bookCover != "") &&
+            <Animated.Image source={{uri: this.state.bookCover}} style={[styles.bookViewImage, bookImageAnim]}/>
+          }
           <Animated.View style={[styles.infoCarrier, infoAnim]}>
             <Text style={styles.title}>{this.props.book.title}</Text>
             <Text style={styles.author}>{this.props.book.author}</Text>
@@ -97,7 +107,7 @@ export default class App extends React.Component {
               <Text style={styles.infoTitle}>{this.props.book.title}</Text>
               <Text style={styles.infoAuthor}>{this.props.book.author}</Text>
               <View style={styles.metric}>
-                <Text style={styles.plot}>During the year 1866, ships of several nations spot a mysterious sea monster, which some suggest to be a giant narwhal. The United States government assembles an expedition in New York City to find and destroy the monster. </Text>
+                <Text style={styles.plot}>{this.props.book.descr}</Text>
               </View>
             </TouchableOpacity>
             <Text style={styles.pages}>{this.props.book.page} Pages & Free</Text>

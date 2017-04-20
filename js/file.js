@@ -2,7 +2,7 @@ import RNFS from 'react-native-fs';
 
 const debug = true;
 
-export default class File {
+class File {
   /*
     Check if there is /book in document directory
     - If there is not create
@@ -137,7 +137,7 @@ export default class File {
         if(s){
           resolve("file://" + this.dirPath + "/book/" + hash + "/cover.jpg");
         }else{
-          resolve(this.serverPath + "book/" + hash + "/cover.jpg");
+          resolve(this.serverPath + hash + "/cover.jpg");
         }
       });
     });
@@ -161,4 +161,21 @@ export default class File {
       });
     });
   }
+
+  getLibraryBooks(){
+    return new Promise((resolve) => {
+      resolve("qqqqq");
+    });
+  }
+}
+
+
+let _file = null;
+
+export function storeFile() {
+  _file = new File();
+}
+
+export function getFile() {
+  return _file;
 }
