@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Dimensions, Image, Animated, Easing } from 'react-native';
 
-import * as EventManager from './../../js/event.js';
+import * as EventManager from './../../js/event';
+import * as Api from './../../js/api';
 
 function getSize() {
     return {
@@ -13,19 +14,29 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
+    this.state = { bookCover: "" };
     this.event = EventManager.get();
+    this.api = Api.get();
   }
 
-  readBook = (bookId) => {
-    console.log("reading book with id", bookId);
-    this.event.emit("reader", {bookId});
+  componentDidMount(){
+    this.api.getBookCover(this.props.book.uniqid).then(coverImage => {
+      this.setState({bookCover: coverImage});
+    });
+  }
+
+  readBook = (bookHash) => {
+    console.log(">< Reading book with id", bookHash);
+    this.event.emit("reader", {bookHash});
   }
 
   render() {
     return (
       <View style={styles.bookView}>
-        <TouchableOpacity style={styles.touchableStyle} onPress={() => this.readBook(this.props.book.id)}>
-          <Image source={this.props.book.cover} style={styles.bookCover}/>
+        <TouchableOpacity style={styles.touchableStyle} onPress={() => this.readBook(this.props.book.uniqid)}>
+          {(this.state.bookCover != "") &&
+            <Image source={{uri: this.state.bookCover}} style={styles.bookCover}/>
+          }
           <View style={styles.rightPane}>
             <Text style={styles.infoTitle}>{this.props.book.title}</Text>
             <Text style={styles.infoAuthor}>{this.props.book.author}</Text>

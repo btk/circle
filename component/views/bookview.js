@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Dimensions, Image, Animated, Easing } from 'react-native';
 
-import * as FileManager from './../../js/file';
+import * as Api from './../../js/api';
 
 function getSize() {
     return {
@@ -20,7 +20,7 @@ export default class App extends React.Component {
     };
     this.animateBook(0);
 
-    this.file = FileManager.get();
+    this.api = Api.get();
   }
 
   /*
@@ -35,7 +35,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    this.file.getBookCover(this.props.book.uniqid).then(coverImage => {
+    this.api.getBookCover(this.props.book.uniqid).then(coverImage => {
       this.setState({bookCover: coverImage});
     });
   }
@@ -55,6 +55,10 @@ export default class App extends React.Component {
         useNativeDriver: true
       },
     ).start();
+  }
+
+  addBookToLibrary(){
+    this.api.addToLibrary(this.props.book.uniqid);
   }
 
 
@@ -111,7 +115,7 @@ export default class App extends React.Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.pages}>{this.props.book.page} Pages & Free</Text>
-            <TouchableOpacity style={styles.download} onPress={() => this.bookPressed(0)}>
+            <TouchableOpacity style={styles.download} onPress={() => this.addBookToLibrary()}>
               <Text style={styles.buttonText}>+ Add to Library</Text>
             </TouchableOpacity>
         </Animated.View>

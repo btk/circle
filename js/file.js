@@ -1,6 +1,6 @@
 import RNFS from 'react-native-fs';
 
-const debug = true;
+let debug = null;
 
 class File {
   /*
@@ -9,10 +9,11 @@ class File {
     - Create private book directory file and directory array variable.
   */
   constructor(){
+    if(debug) console.log("# File object created!");
     this.dirPath = RNFS.DocumentDirectoryPath;
     this.serverPath = "http://46.101.180.166/book/";
     RNFS.readDir(this.dirPath).then((result) => {
-        if(result.length != 1){
+        if(result.length == 0 || (result.length == 1 && result[0].name != 'book') || (result.length == 2 && result[0].name != 'book' && result[1].name != 'book')){
           this._createDirectory("/book/").then(dir => {
             if(debug) console.log("Book directory created for first time.");
           });
@@ -96,7 +97,11 @@ class File {
           if(status){
             this._downloadFile(this.serverPath + hash + "/content.txt", dir + "content.txt").then((status) => {
               if(status){
-                resolve(status);
+                this._downloadFile(this.serverPath + hash + "/manifest.json", dir + "manifest.json").then((status) => {
+                  if(status){
+                    resolve(status);
+                  }
+                });
               }
             });
           }
@@ -165,8 +170,8 @@ class File {
     return new Promise((resolve) => {
       this.checkBook(hash).then(s => {
         if(s){
-          this._readFile("/book/" + hash + "/content.json").then(content => {
-            resolve(content.json());
+          this._readFile("/book/" + hash + "/manifest.json").then(content => {
+            resolve(JSON.parse(content));
           })
         }else{
           fetch(this.serverPath+ 'book.php?hash=' +hash).then((resp) => {
@@ -177,9 +182,10 @@ class File {
     });
   }
 
-  getLibraryBooks(){
-    return new Promise((resolve) => {
-      resolve("qqqqq");
+
+  _flush(){
+    this._removeDirectory("/book/").then((status) => {
+      if(status || debug) console.log("X Directory is flushed!");
     });
   }
 }
@@ -187,8 +193,10 @@ class File {
 
 let _file = null;
 
-export function store() {
+export function store(debugStatus, flushStatus) {
+  debug = debugStatus;
   _file = new File();
+  if(flushStatus) _file._flush();
 }
 
 export function get() {

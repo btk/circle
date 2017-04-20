@@ -16,7 +16,7 @@ export default class App extends React.Component {
     this.state = {
       currentTab: this.defaultTab,
       readerStatus: false,
-      currentBookId: 0
+      currentBookHash: 0
     };
 
     Api.store();
@@ -27,10 +27,10 @@ export default class App extends React.Component {
 
   componentDidMount(){
     this.event.on('reader', (data) => {
-      if (data.bookId) {
+      if (data.bookHash) {
         this.setState({
           readerStatus: true,
-          currentBookId: data.bookId
+          currentBookHash: data.bookHash
         });
       }
     });
@@ -52,7 +52,7 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="dark-content"/>
-          <Reader close={this.closeReader.bind(this)} bookId={this.state.currentBookId}/>
+          <Reader close={this.closeReader.bind(this)} bookHash={this.state.currentBookHash}/>
         </View>
       );
     } else {

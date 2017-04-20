@@ -6,8 +6,6 @@ import SvgUri from 'react-native-svg-uri';
 import * as EventManager from './../js/event.js';
 import * as Api from './../js/api.js';
 
-import File from './../js/file.js';
-
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
@@ -24,17 +22,20 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {bookLoad: false, content: "", bookCoverUri: ""};
-    this.event = EventManager.get();
+    this.state = {bookLoad: false, content: "", bookCoverUri: "", book: {}};
+    this.api = Api.get();
   }
 
   componentDidMount(){
-    let f = new File();
-    f.getBookCover("123qwe").then(bookCoverUri => {
+    this.api.getBookByHash(this.props.bookHash).then(book => {
+      this.setState({book});
+    });
+
+    this.api.getBookCover(this.props.bookHash).then(bookCoverUri => {
       this.setState({bookCoverUri});
     });
-    f.getBookContent("123qwe").then(content => {
-      console.log(content);
+
+    this.api.getBookContent(this.props.bookHash).then(content => {
       this.setState({bookLoad: true, content: content})
     });
   }
@@ -43,7 +44,7 @@ export default class App extends React.Component {
     let width = getSize().width;
     if(this.state.bookLoad){
       return( <View style={styles.readerCarrier}>
-                <Header currentTab={"Jurney to the Center of the Earth"}
+                <Header currentTab={this.state.book.title}
                         leftButton={this.props.close.bind(this)}
                         rightButton={this.props.close.bind(this)}/>
                 <ScrollView style={styles.sv}>

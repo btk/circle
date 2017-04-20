@@ -22,7 +22,7 @@ export default class App extends React.Component {
   /*
    * Get the books data when the component is mounted.
    */
-  componentDidMount(){
+  componentWillMount(){
     this.api.getAllBooks().then((myBooks) => {
       this.setState({
         books: myBooks
@@ -37,12 +37,14 @@ export default class App extends React.Component {
         horizontal={false}
         style={styles.scrollView}>
           <View style={styles.bookViewCarrier}>
-            {this.state.books.map((book, i) => (
+            {this.state.books.map((book, i) => {
+              if(i < 4){
+              return (
               <BookView key={i}
                         status={this.state.closeAll}
                         openViewNotifier={() => { this.setState({closeAll: true}) }}
                         book={book}/>
-            ))}
+            )}})}
           </View>
       </ScrollView>
     );
