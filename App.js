@@ -4,8 +4,7 @@ import Header from './component/header';
 import Navbar from './component/navbar';
 import Content from './component/content';
 import Reader from './component/reader';
-import RawApi from './api';
-import * as StoredApi from './storedapi';
+import * as Api from './js/api';
 import * as EventManager from './js/event.js';
 
 import SvgUri from 'react-native-svg-uri';
@@ -19,12 +18,11 @@ export default class App extends React.Component {
       readerStatus: false,
       currentBookId: 0
     };
-    // Create and store the Api
-    let api = new RawApi();
-    StoredApi.storeApi(api);
-    EventManager.storeEvent();
-    this.api = StoredApi.getApi();
-    this.event = EventManager.getEvent();
+
+    Api.store();
+    this.api = Api.get();
+    EventManager.store();
+    this.event = EventManager.get();
   }
 
   componentDidMount(){

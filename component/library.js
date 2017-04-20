@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions } from 'react-native';
-import * as StoredApi from './../storedapi';
+import * as Api from './../js/api';
 
 import LibraryBookView from './views/library-bookview';
 
@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.api = StoredApi.getApi();
+    this.api = Api.get();
     this.state = { books: [] };
   }
 

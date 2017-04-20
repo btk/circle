@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View, Dimensions } from 'react-native';
 
 import SvgUri from 'react-native-svg-uri';
-import RNFS from 'react-native-fs';
 
 
 function getSize() {

@@ -20,7 +20,7 @@ export default class App extends React.Component {
     };
     this.animateBook(0);
 
-    this.file = FileManager.getFile();
+    this.file = FileManager.get();
   }
 
   /*

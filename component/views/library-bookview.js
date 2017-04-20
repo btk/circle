@@ -13,7 +13,7 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.event = EventManager.getEvent();
+    this.event = EventManager.get();
   }
 
   readBook = (bookId) => {

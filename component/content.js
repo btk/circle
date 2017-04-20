@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, Dimensions, Animated, Easing } from 'react-native';
 
+// Import page components.
 import Store from './store';
 import Recent from './recent';
 import Library from './library';

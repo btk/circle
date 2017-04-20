@@ -150,13 +150,28 @@ class File {
   getBookContent(hash){
     return new Promise((resolve) => {
       this.checkBook(hash).then(s => {
-        console.log("status", s);
         if(s){
           this._readFile("/book/" + hash + "/content.txt").then(content => {
             resolve(content);
           })
         }else{
           resolve(false);
+        }
+      });
+    });
+  }
+
+  getBookManifest(hash){
+    return new Promise((resolve) => {
+      this.checkBook(hash).then(s => {
+        if(s){
+          this._readFile("/book/" + hash + "/content.json").then(content => {
+            resolve(content.json());
+          })
+        }else{
+          fetch(this.serverPath+ 'book.php?hash=' +hash).then((resp) => {
+            resolve(resp.json());
+          });
         }
       });
     });
@@ -172,10 +187,10 @@ class File {
 
 let _file = null;
 
-export function storeFile() {
+export function store() {
   _file = new File();
 }
 
-export function getFile() {
+export function get() {
   return _file;
 }

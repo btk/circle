@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, ScrollView, Text, Image, View, Dimensions
 import Header from './header';
 import SvgUri from 'react-native-svg-uri';
 import * as EventManager from './../js/event.js';
-import * as StoredApi from './../storedapi.js';
+import * as Api from './../js/api.js';
 
 import File from './../js/file.js';
 
@@ -25,7 +25,7 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {bookLoad: false, content: "", bookCoverUri: ""};
-    this.event = EventManager.getEvent();
+    this.event = EventManager.get();
   }
 
   componentDidMount(){
