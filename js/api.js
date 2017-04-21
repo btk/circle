@@ -18,13 +18,19 @@ class Api {
   }
 
   addToLibrary(hash){
-    this.file.downloadBook(hash).then(status => {
-      if(status){
-        this.getCurrentLibraryArray().then(library => {
-          library.push(hash);
-          this.storage.setItem("library", library);
-          if(debug) console.log("New book added to library");
+    this.storage.getItem("library").then(libArray => {
+      if(!libArray.includes(hash)){
+        this.file.downloadBook(hash).then(status => {
+          if(status){
+            this.getCurrentLibraryArray().then(library => {
+              library.push(hash);
+              this.storage.setItem("library", library);
+              if(debug) console.log("New book added to library");
+            });
+          }
         });
+      }else{
+        if(debug) console.log(".. This Book is already in library!")
       }
     });
   }
@@ -41,6 +47,8 @@ class Api {
         fetch(this.serverPath+ 'book.php?hash=0').then((resp) => {
           this.allBooksCache = resp.json();
           resolve(this.allBooksCache);
+        }, (error) => {
+          resolve(503);
         });
       }
     });

@@ -3,9 +3,7 @@ import { StyleSheet, ScrollView, Text, View, Dimensions, Animated, Easing } from
 
 // Import page components.
 import Store from './store';
-import Recent from './recent';
 import Library from './library';
-import Profile from './profile';
 
 function getSize() {
     return {
@@ -48,12 +46,8 @@ export default class App extends React.Component {
   renderTab = (currentTab) => {
     if(currentTab == "store"){
       return (<Store />);
-    } else if(currentTab == "recent"){
-      return (<Recent />);
     } else if(currentTab == "library"){
       return (<Library />);
-    } else if(currentTab == "profile"){
-      return (<Profile />);
     }
   }
 

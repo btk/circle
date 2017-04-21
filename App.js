@@ -5,14 +5,14 @@ import Navbar from './component/navbar';
 import Content from './component/content';
 import Reader from './component/reader';
 import * as Api from './js/api';
-import * as EventManager from './js/event.js';
+import * as EventManager from './js/event';
 
 import SvgUri from 'react-native-svg-uri';
 
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.defaultTab = 'store';
+    this.defaultTab = 'library';
     this.state = {
       currentTab: this.defaultTab,
       readerStatus: false,
@@ -32,6 +32,11 @@ export default class App extends React.Component {
           readerStatus: true,
           currentBookHash: data.bookHash
         });
+      }
+    });
+    this.event.on('changeTab', (tab) => {
+      if (tab) {
+        this.tabChanged(tab);
       }
     });
   }

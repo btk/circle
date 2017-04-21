@@ -30,24 +30,6 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.navbar}>
-        <TouchableOpacity onPress={() => this.props.changeTab('store')}
-          style={styles.navbarItemTouch}>
-          <View style={[styles.navbarItem, {opacity: (this.state.tab == 'store')? 1 : 0.4 }]}>
-            <SvgUri
-              width="20"
-              height="20"
-              source={require('./../svg/map.svg')}/>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.changeTab('recent')}
-          style={styles.navbarItemTouch}>
-          <View style={[styles.navbarItem, {opacity: (this.state.tab == 'recent')? 1 : 0.4 }]}>
-            <SvgUri
-              width="20"
-              height="20"
-              source={require('./../svg/add.svg')}/>
-          </View>
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.changeTab('library')}
           style={styles.navbarItemTouch}>
           <View style={[styles.navbarItem, {opacity: (this.state.tab == 'library')? 1 : 0.4 }]}>
@@ -55,15 +37,17 @@ export default class App extends React.Component {
               width="20"
               height="20"
               source={require('./../svg/chat.svg')}/>
+              <Text style={styles .navText}>Bookshelf</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.changeTab('profile')}
+        <TouchableOpacity onPress={() => this.props.changeTab('store')}
           style={styles.navbarItemTouch}>
-          <View style={[styles.navbarItem, {opacity: (this.state.tab == 'profile')? 1 : 0.4 }]}>
+          <View style={[styles.navbarItem, {opacity: (this.state.tab == 'store')? 1 : 0.4 }]}>
             <SvgUri
               width="20"
               height="20"
-              source={require('./../svg/user.svg')}/>
+              source={require('./../svg/map.svg')}/>
+              <Text style={styles .navText}>Book Store</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -93,6 +77,11 @@ const styles = StyleSheet.create({
   navbarItem: {
     flex: 1,
     alignItems: 'center',
-    padding:10
+    padding:10,
+    flexDirection: 'row',
+  },
+  navText: {
+    fontSize: 12,
+    marginLeft: 10
   }
 });

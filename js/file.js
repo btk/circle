@@ -68,7 +68,6 @@ class File {
   _checkDirectory(path){
     return new Promise((resolve) => {
       RNFS.exists(this.dirPath + path).then(res => {
-        if(debug && res){ console.log("Existed path", path); }
         resolve(res);
       });
     });

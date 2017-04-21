@@ -50,7 +50,7 @@ export default class App extends React.Component {
                 <ScrollView style={styles.sv}>
                   {this.state.content.split("\n\n").map((p, i) => (
                     <Text style={[styles.paragraph, p.includes("CHAPTER")?styles.chapter:{}]} key={i}>{
-                      p.replaceAll('\n', "")
+                      p.replaceAll('\n', " ")
                     }</Text>
                   ))}
                 </ScrollView>

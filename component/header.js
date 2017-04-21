@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Animated, Easing } from 'react-native';
 
 import SvgUri from 'react-native-svg-uri';
+import Search from './views/search';
 
 export default class App extends React.Component {
   constructor(props){
@@ -51,14 +52,8 @@ export default class App extends React.Component {
       case "store":
         return "Book Store"
         break;
-      case "recent":
-        return "Recent Books"
-        break;
       case "library":
-        return "Library"
-        break;
-      case "profile":
-        return "My Profile"
+        return "Your Books"
         break;
       default:
         return tab
@@ -66,33 +61,42 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <View>
-        <View style={styles.header}>
-        {this.props.leftButton &&
-        <TouchableOpacity style={styles.touchableButton} onPress={this.props.leftButton}>
-          <View style={styles.button}>
-          <SvgUri
-            width="20"
-            height="20"
-            source={require('./../svg/back.svg')}/>
-          </View>
-        </TouchableOpacity>}
-          <Animated.Text style={[styles.currentTabText, { opacity: this.state.textAnim }]}>
-            {this.currentTabMap(this.state.tab)}
-          </Animated.Text>
-          {this.props.rightButton &&
-          <TouchableOpacity style={styles.touchableButton} onPress={this.props.rightButton}>
+    if(this.state.tab == "store"){
+      return(<View>
+              <View style={styles.header}>
+                <Animated.View style={{opacity: this.state.textAnim, flex: 1}}><Search /></Animated.View>
+              </View>
+            </View>);
+    }else{
+      return (
+        <View>
+          <View style={styles.header}>
+          {this.props.leftButton &&
+          <TouchableOpacity style={styles.touchableButton} onPress={this.props.leftButton}>
             <View style={styles.button}>
             <SvgUri
               width="20"
               height="20"
-              source={require('./../svg/settings.svg')}/>
+              style={{marginTop: 2}}
+              source={require('./../svg/back.svg')}/>
             </View>
           </TouchableOpacity>}
+            <Animated.Text style={[styles.currentTabText, { opacity: this.state.textAnim }]}>
+              {this.currentTabMap(this.state.tab)}
+            </Animated.Text>
+            {this.props.rightButton &&
+            <TouchableOpacity style={styles.touchableButton} onPress={this.props.rightButton}>
+              <View style={styles.button}>
+              <SvgUri
+                width="20"
+                height="20"
+                source={require('./../svg/settings.svg')}/>
+              </View>
+            </TouchableOpacity>}
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   },
   currentTabText: {
     flex: 1,
-    lineHeight: 38,
+    lineHeight: 39,
     textAlign: 'center'
   },
   touchableButton: {
