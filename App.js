@@ -52,19 +52,23 @@ export default class App extends React.Component {
       });
   }
 
+  getStatusBar(){
+    return (<StatusBar barStyle={Api.themify("dark-content", "light-content", "dark-content")}/>);
+  }
+
   render() {
     if(this.state.readerStatus){
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="dark-content"/>
+          {this.getStatusBar()}
           <Reader close={this.closeReader.bind(this)} bookHash={this.state.currentBookHash}/>
         </View>
       );
     } else {
       return (
         <View style={styles.container}>
-        <StatusBar barStyle="dark-content"/>
-          <Header currentTab = {this.state.currentTab} />
+          {this.getStatusBar()}
+          <Header currentTab = {this.state.currentTab}/>
           <Content key={this.state.currentTab} currentTab={this.state.currentTab}/>
           <Navbar changeTab={this.tabChanged} currentTab={this.state.currentTab}/>
         </View>
@@ -76,6 +80,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#f6f8f9',
+    backgroundColor: Api.themeColor('tone2'),
   }
 });

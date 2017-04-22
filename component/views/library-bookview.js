@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     flex:1,
     height: bookCoverWidth * 1.54 + 20,
     borderWidth: 1,
-    borderColor: '#f2f3f4',
-    backgroundColor: '#fff',
+    borderColor: Api.themeColor('border1'),
+    backgroundColor: Api.themeColor('tone1'),
     margin: 5,
     borderRadius: 3,
     padding: 7,
@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
     height: bookCoverWidth * 1.54
   },
   rightPane: { marginHorizontal: 10},
-  infoTitle: { fontSize: 16, marginVertical: 6, marginHorizontal: 3},
-  infoAuthor: { fontSize: 12, color: '#777', marginHorizontal: 3},
+  infoTitle: { fontSize: 16, color: Api.themeColor('text1'), marginVertical: 6, marginHorizontal: 3},
+  infoAuthor: { fontSize: 12, color: Api.themeColor('text3'), marginHorizontal: 3},
 });

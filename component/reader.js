@@ -3,6 +3,8 @@ import { StyleSheet, TouchableOpacity, ScrollView, Text, Image, View, Dimensions
 
 import Header from './header';
 import SvgUri from 'react-native-svg-uri';
+import Swiper from 'react-native-page-swiper'
+
 import * as EventManager from './../js/event.js';
 import * as Api from './../js/api.js';
 
@@ -22,7 +24,13 @@ function getSize() {
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = {bookLoad: false, content: "", bookCoverUri: "", book: {}};
+    this.state = {
+      bookLoad: false,
+      content: "",
+      bookCoverUri: "",
+      book: {},
+      currentPage: 1
+    };
     this.api = Api.get();
   }
 
@@ -40,6 +48,47 @@ export default class App extends React.Component {
     });
   }
 
+  getPage(pageNum, length){
+    let content = this.state.content;
+
+    // word cut from page end
+    let i = 0;
+    while(1){
+      if(content.substring(pageNum * length - 1 + i, pageNum * length + i) == " ") break;
+      i++;
+    }
+
+    // word cut from page start
+    let j = 0;
+    if(pageNum != 1){
+      while(1){
+        if(content.substring((pageNum - 1) * length + j, (pageNum - 1) * length + 1 + j) == " ") break;
+        j++;
+      }
+    }
+
+    return content.substring((pageNum - 1) * length + j, pageNum * length + i).replace(" ", "")
+      .split("\n\n")
+      .map((p, i) => (<Text key={i} style={styles.paragraph}>{p.replaceAll('\n', " ")}</Text>));
+  }
+
+  renderSwiper(cp, length){
+    console.log("swiper rendered");
+    let pages = [];
+    if(parseInt(cp - 1) !== 0){
+      pages.push(<View style={styles.swiperView} key={cp - 1}>{this.getPage(cp - 1, length)}</View>);
+    }
+    pages.push(<View style={styles.swiperView} key={cp}>{this.getPage(cp, length)}</View>);
+    pages.push(<View style={styles.swiperView} key={cp + 1}>{this.getPage(cp + 1, length)}</View>);
+    return (<Swiper pager={false} onPageChange={this.pageChanged.bind(this)}>{pages}</Swiper>);
+  }
+
+  pageChanged(changedToPageNumIndex){
+    this.setState({currentPage: changedToPageNumIndex + 1});
+    console.log(changedToPageNumIndex);
+  }
+
+
   render() {
     let width = getSize().width;
     if(this.state.bookLoad){
@@ -47,13 +96,7 @@ export default class App extends React.Component {
                 <Header currentTab={this.state.book.title}
                         leftButton={this.props.close.bind(this)}
                         rightButton={this.props.close.bind(this)}/>
-                <ScrollView style={styles.sv}>
-                  {this.state.content.split("\n\n").map((p, i) => (
-                    <Text style={[styles.paragraph, p.includes("CHAPTER")?styles.chapter:{}]} key={i}>{
-                      p.replaceAll('\n', " ")
-                    }</Text>
-                  ))}
-                </ScrollView>
+                        {this.renderSwiper(this.state.currentPage, 1300)}
               </View>);
     }else{
       if(this.state.bookCoverUri){
@@ -81,16 +124,18 @@ const styles = StyleSheet.create({
     width: getSize().width,
     height: getSize().height,
   },
-  sv: {
+  swiperView: {
     paddingVertical: 10,
-    width: getSize().width,
-    height: getSize().height,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   paragraph: {
     paddingVertical: 5,
     paddingHorizontal: 15,
     lineHeight: 21,
-    fontSize: 13
+    fontSize: 13,
+    textAlign: 'justify'
   },
   chapter: {
     opacity: 0.7,

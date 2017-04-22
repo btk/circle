@@ -20,6 +20,7 @@
     "react": "~15.4.0",
     "react-native": "0.42.3",
     "react-native-fs": "^2.1.0-rc.1",
+    "react-native-page-swiper": "^0.3.0",
     "react-native-svg-uri": "^1.2.0"
   }
 }

@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View, Animated, Easing } from 'reac
 
 import SvgUri from 'react-native-svg-uri';
 import Search from './views/search';
+import * as Api from './../js/api';
 
 export default class App extends React.Component {
   constructor(props){
@@ -106,14 +107,14 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     flexDirection: 'row',
     alignItems: 'stretch',
-    backgroundColor: '#ffffff',
+    backgroundColor: Api.themeColor('tone1'),
     borderBottomWidth: 1,
-    borderBottomColor: '#f3f4f5',
-    backgroundColor: '#fff',
+    borderBottomColor: Api.themeColor('border1'),
   },
   currentTabText: {
     flex: 1,
     lineHeight: 39,
+    color: Api.themeColor('text1'),
     textAlign: 'center'
   },
   touchableButton: {

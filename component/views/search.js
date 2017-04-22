@@ -36,7 +36,7 @@ export default class App extends React.Component {
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}
         placeholder="Search books, authors, genres..."
-        placeholderTextColor="#a1a1a1"
+        placeholderTextColor="#888"
         onFocus={this.searchFocus}
         onBlur={this.searchBlur}
       />
@@ -52,11 +52,11 @@ const styles = StyleSheet.create({
   searchBox: {
     height: 26,
     margin: 7,
-    backgroundColor: "rgba(0,0,0,0.05)",
+    backgroundColor: Api.themeColor("tone3"),
     borderRadius: 3,
     overflow: 'hidden',
     fontSize: 13,
     paddingHorizontal: 12,
-    color: '#555'
+    color: Api.themeColor("text2")
   }
 });

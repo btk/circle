@@ -129,8 +129,8 @@ const bookViewWidth = Math.floor(getSize().width / 2 - 20);
 const styles = StyleSheet.create({
   bookView: {
     borderWidth: 1,
-    borderColor: '#f2f3f4',
-    backgroundColor: '#fff',
+    borderColor: Api.themeColor('border1'),
+    backgroundColor: Api.themeColor('tone1'),
     margin: 5,
     borderRadius: 3,
     padding: 7,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   openView: {
     overflow: 'hidden',
-    backgroundColor: '#fff',
+    backgroundColor: Api.themeColor('tone1'),
     borderRadius: 3,
     padding: 7,
     width: bookViewWidth,
@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
   },
   infoCarrier: {
   },
-  title: { fontSize: 14, marginVertical: 6, marginHorizontal: 3},
-  author: { fontSize: 11, color: '#777', marginHorizontal: 3},
+  title: { fontSize: 14, marginVertical: 6, marginHorizontal: 3, color: Api.themeColor('text1')},
+  author: { fontSize: 11, color: Api.themeColor('text3'), marginHorizontal: 3},
   download: {
     width: bookViewWidth - 22,
     height: 30,
@@ -184,9 +184,9 @@ const styles = StyleSheet.create({
     lineHeight: 30
   },
   bookExtra: { height: bookViewWidth + 120 },
-  infoTitle: { fontSize: 16, marginVertical: 6, marginHorizontal: 3},
-  infoAuthor: { fontSize: 12, color: '#777', marginVertical: 6, marginHorizontal: 3},
-  metric: { marginHorizontal: 3, paddingVertical: 6, borderTopWidth: 1, borderTopColor: '#eee' },
-  plot: { fontSize: 10, lineHeight: 14, color: '#555',  },
+  infoTitle: { fontSize: 16, color: Api.themeColor('text1'), marginVertical: 6, marginHorizontal: 3},
+  infoAuthor: { fontSize: 12, color: Api.themeColor('text3'), marginVertical: 6, marginHorizontal: 3},
+  metric: { marginHorizontal: 3, paddingVertical: 6, borderTopWidth: 1, borderTopColor: Api.themeColor('tone2') },
+  plot: { fontSize: 10, lineHeight: 14, color: Api.themeColor('text2'),  },
 
 });

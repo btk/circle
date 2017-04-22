@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View, Dimensions } from 'react-native';
 
 import SvgUri from 'react-native-svg-uri';
+import * as Api from './../js/api';
 
 
 function getSize() {
@@ -61,11 +62,11 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     flexDirection: 'row',
     borderTopWidth: 1,
-    borderTopColor: '#f3f4f5',
-    backgroundColor: '#fff',
+    borderTopColor: Api.themeColor("border1"),
+    backgroundColor: Api.themeColor('tone1'),
     position: 'absolute',
     bottom: 0,
-    left:0,
+    left: 0,
     height:40,
     width: getSize().width,
     paddingHorizontal: getSize().width * 0.08,
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   navText: {
+    color: Api.themeColor("text1"),
     fontSize: 12,
     marginLeft: 10
   }

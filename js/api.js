@@ -3,6 +3,10 @@ import * as StorageManager from './storage';
 
 const debug = true;
 const flush = false;
+const _theme = "white";
+// white
+// black
+// sepia
 
 class Api {
   constructor(){
@@ -107,4 +111,45 @@ export function store() {
 
 export function get() {
   return _api;
+}
+export function theme(){
+  return _theme;
+}
+
+export function themify(white, black, sepia){
+  if(_theme == "white") return white;
+  if(_theme == "black") return black;
+  if(_theme == "sepia") return sepia;
+}
+
+export function themeColor(type){
+  if(type == "tone1"){
+    if(_theme == "white") return "#ffffff";
+    if(_theme == "black") return "#222222";
+    if(_theme == "sepia") return "#ececd4";
+  } else if(type == "tone2"){
+    if(_theme == "white") return "#f6f8f9";
+    if(_theme == "black") return "#2f2f2f";
+    if(_theme == "sepia") return "#e4e4d1";
+  } else if(type == "tone3"){
+    if(_theme == "white") return "rgba(0,0,0,0.04)";
+    if(_theme == "black") return "rgba(255,255,255,0.05)";
+    if(_theme == "sepia") return "rgba(0,0,0,0.04)";
+  } else if(type == "border1"){
+    if(_theme == "white") return "#f3f4f5";
+    if(_theme == "black") return "#1f1f1f";
+    if(_theme == "sepia") return "#e4ddcb";
+  } else if(type == "text1"){
+    if(_theme == "white") return "#000000";
+    if(_theme == "black") return "#ffffff";
+    if(_theme == "sepia") return "#5a4b34";
+  } else if(type == "text2"){
+    if(_theme == "white") return "#444444";
+    if(_theme == "black") return "#eeeeee";
+    if(_theme == "sepia") return "#9c948a";
+  } else if(type == "text3"){
+    if(_theme == "white") return "#777777";
+    if(_theme == "black") return "#aaaaaa";
+    if(_theme == "sepia") return "#9c9489";
+  }
 }
