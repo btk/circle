@@ -2,7 +2,6 @@ package com.circle;
 
 import com.facebook.react.ReactActivity;
 import com.horcrux.svg.SvgPackage;
-import com.smixx.reactnativeicons.ReactNativeIcons;
 import com.horcrux.svg.RNSvgPackage;
 
 public class MainActivity extends ReactActivity {

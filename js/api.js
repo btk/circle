@@ -3,7 +3,7 @@ import * as StorageManager from './storage';
 
 const debug = true;
 const flush = false;
-const _theme = "white";
+const _theme = "black";
 // white
 // black
 // sepia

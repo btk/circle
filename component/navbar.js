@@ -37,8 +37,8 @@ export default class App extends React.Component {
             <SvgUri
               width="20"
               height="20"
-              source={require('./../svg/chat.svg')}/>
-              <Text style={styles .navText}>Bookshelf</Text>
+              source={Api.themify(require('./../svg/bookshelf_b.svg'), require('./../svg/bookshelf_w.svg'), require('./../svg/bookshelf_b.svg'))}/>
+              <Text style={styles.navText}>Bookshelf</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.changeTab('store')}
@@ -47,8 +47,8 @@ export default class App extends React.Component {
             <SvgUri
               width="20"
               height="20"
-              source={require('./../svg/map.svg')}/>
-              <Text style={styles .navText}>Book Store</Text>
+              source={Api.themify(require('./../svg/store_b.svg'), require('./../svg/store_w.svg'), require('./../svg/store_b.svg'))}/>
+              <Text style={styles.navText}>Book Store</Text>
           </View>
         </TouchableOpacity>
       </View>
