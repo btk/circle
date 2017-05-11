@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity, ScrollView, Text, Image, View, Dimensions
 
 import Header from './header';
 import SvgUri from 'react-native-svg-uri';
-import Swiper from 'react-native-page-swiper'
 
 import * as EventManager from './../js/event.js';
 import * as Api from './../js/api.js';
@@ -13,6 +12,18 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 };
 
+function makeid(length)
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for(var i=0; i < length; i++)
+    {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
 
 function getSize() {
   return {
@@ -73,14 +84,14 @@ export default class App extends React.Component {
   }
 
   renderSwiper(cp, length){
-    console.log("swiper rendered");
+    console.log("swiper rendered", cp);
     let pages = [];
     if(parseInt(cp - 1) !== 0){
-      pages.push(<View style={styles.swiperView} key={cp - 1}>{this.getPage(cp - 1, length)}</View>);
+      pages.push(<View style={styles.swiperView} key={makeid(10)}>{this.getPage(cp - 1, length)}</View>);
     }
-    pages.push(<View style={styles.swiperView} key={cp}>{this.getPage(cp, length)}</View>);
-    pages.push(<View style={styles.swiperView} key={cp + 1}>{this.getPage(cp + 1, length)}</View>);
-    return (<Swiper pager={false} onPageChange={this.pageChanged.bind(this)}>{pages}</Swiper>);
+    pages.push(<View style={styles.swiperView} key={makeid(10)}>{this.getPage(cp, length)}</View>);
+    pages.push(<View style={styles.swiperView} key={makeid(10)}>{this.getPage(cp + 1, length)}</View>);
+    return (<ScrollView style={{height: 300}}>{pages}</ScrollView>);
   }
 
   pageChanged(changedToPageNumIndex){
@@ -88,19 +99,19 @@ export default class App extends React.Component {
     console.log(changedToPageNumIndex);
   }
 
-
   render() {
     let width = getSize().width;
     if(this.state.bookLoad){
       return( <View style={styles.readerCarrier}>
                 <Header currentTab={this.state.book.title}
-                        leftButton={this.props.close.bind(this)}
+                        leftButton={() => { this.setState({currentPage: 4}); }}
                         rightButton={this.props.close.bind(this)}/>
                         {this.renderSwiper(this.state.currentPage, 1300)}
               </View>);
     }else{
       if(this.state.bookCoverUri){
-        return(<View>
+        return(
+          <View>
             <Image source={{uri: this.state.bookCoverUri, width: getSize().width, height: getSize().height}}
                    width={getSize().width}
                    height={getSize().height}
